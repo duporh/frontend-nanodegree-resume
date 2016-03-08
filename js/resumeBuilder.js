@@ -24,23 +24,34 @@ var bio = {
     $('#header').prepend(formattedName);
 
     // Display Contact information
-    var formattedMobile = HTMLmobile.replace(placeholderText, this.contacts.mobile);
-    var formattedEmail = HTMLemail.replace(placeholderText, this.contacts.email);
-    var formattedGithub = HTMLgithub.replace(placeholderText, this.contacts.github);
-    var formattedTwitter = HTMLtwitter.replace(placeholderText, this.contacts.twitter);
-    var formattedLocation = HTMLlocation.replace(placeholderText, this.contacts.location);
+    var formattedMobile =
+      HTMLmobile.replace(placeholderText, this.contacts.mobile);
+    var formattedEmail =
+      HTMLemail.replace(placeholderText, this.contacts.email);
+    var formattedGithub =
+      HTMLgithub.replace(placeholderText, this.contacts.github);
+    var formattedTwitter =
+      HTMLtwitter.replace(placeholderText, this.contacts.twitter);
+    var formattedLocation =
+      HTMLlocation.replace(placeholderText, this.contacts.location);
     $('#topContacts').append(formattedMobile);
+    $('#footerContacts').append(formattedMobile);
     $('#topContacts').append(formattedEmail);
+    $('#footerContacts').append(formattedEmail);
     $('#topContacts').append(formattedGithub);
+    $('#footerContacts').append(formattedGithub);
     $('#topContacts').append(formattedTwitter);
+    $('#footerContacts').append(formattedTwitter);
     $('#topContacts').append(formattedLocation);
+    $('#footerContacts').append(formattedLocation);
 
     // Display biopic
     var formattedBioPic = HTMLbioPic.replace(placeholderText, this.biopic);
     $('#header').append(formattedBioPic);
 
     // Display welcome message
-    var formattedWelcomeMessage = HTMLwelcomeMsg.replace(placeholderText, this.welcomeMessage);
+    var formattedWelcomeMessage =
+      HTMLwelcomeMsg.replace(placeholderText, this.welcomeMessage);
     $('#header').append(formattedWelcomeMessage);
 
     // Display skills
@@ -84,16 +95,20 @@ var education = {
     this.schools.forEach(function(currentSchool) {
       $('#education').append(HTMLschoolStart);
       var currentEducationEntry = $('.education-entry:last');
-      var formattedSchoolName = HTMLschoolName.replace(placeholderText, currentSchool.name);
+      var formattedSchoolName =
+        HTMLschoolName.replace(placeholderText, currentSchool.name);
       formattedSchoolName = formattedSchoolName.replace('#', currentSchool.url);
-      var formattedSchoolDegree = HTMLschoolDegree.replace(placeholderText, currentSchool.degree);
-      currentEducationEntry.append(formattedSchoolName);
-      currentEducationEntry.append(formattedSchoolDegree);
-      var formattedSchoolDate = HTMLschoolDates.replace(placeholderText, currentSchool.dates);
+      var formattedSchoolDegree =
+        HTMLschoolDegree.replace(placeholderText, currentSchool.degree);
+      currentEducationEntry.append(formattedSchoolName + formattedSchoolDegree);
+      var formattedSchoolDate =
+        HTMLschoolDates.replace(placeholderText, currentSchool.dates);
       currentEducationEntry.append(formattedSchoolDate);
-      var formattedSchoolLocation = HTMLschoolLocation.replace(placeholderText, currentSchool.location);
+      var formattedSchoolLocation =
+        HTMLschoolLocation.replace(placeholderText, currentSchool.location);
       currentEducationEntry.append(formattedSchoolLocation);
-      var formattedSchoolMajor = HTMLschoolMajor.replace(placeholderText, currentSchool.majors);
+      var formattedSchoolMajor =
+        HTMLschoolMajor.replace(placeholderText, currentSchool.majors);
       currentEducationEntry.append(formattedSchoolMajor);
     });
 
@@ -102,18 +117,106 @@ var education = {
     this.onlineCourses.forEach(function(currentCourse) {
       $('#education').append(HTMLschoolStart);
       var currentEducationEntry = $('.education-entry:last');
-      var formattedOnlineTitle = HTMLonlineTitle.replace(placeholderText, currentCourse.title);
+      var formattedOnlineTitle =
+        HTMLonlineTitle.replace(placeholderText, currentCourse.title);
       formattedOnlineTitle = formattedOnlineTitle.replace("#", currentCourse.url);
-      currentEducationEntry.append(formattedOnlineTitle);
-      var formattedOnlineSchool = HTMLonlineSchool.replace(placeholderText, currentCourse.school);
-      currentEducationEntry.append(formattedOnlineSchool);
-      var formattedOnlineDates = HTMLonlineDates.replace(placeholderText, currentCourse.date)
+      var formattedOnlineSchool =
+        HTMLonlineSchool.replace(placeholderText, currentCourse.school);
+      currentEducationEntry.append(formattedOnlineTitle + formattedOnlineSchool);
+      var formattedOnlineDates =
+        HTMLonlineDates.replace(placeholderText, currentCourse.date)
       currentEducationEntry.append(formattedOnlineDates);
-      var formattedOnlineUrl = HTMLonlineURL.replace(placeholderText, currentCourse.url);
+      var formattedOnlineUrl =
+        HTMLonlineURL.replace(placeholderText, currentCourse.url);
       currentEducationEntry.append(formattedOnlineUrl);
     });
   }
 }
 
+var work = {
+  jobs: [
+    {
+      employer: "Amazon.com",
+      title: "Application Engineer",
+      location: "Chennai, India",
+      dates: "May 2011 - July 2012",
+      description: "Worked on data ingestion systems for the retail team"
+    },
+    {
+      employer: "Cognizant",
+      title: "Programmer Analyst",
+      location: "Chennai, India",
+      dates: "July 2010 - May 2011",
+      description: "Worked with the performance engineering team responsible for" +
+       " identifying and resolving performance bottlenecks"
+    }
+  ],
+  display: function() {
+    var placeholderText = "%data%";
+      this.jobs.forEach(function(currentJob) {
+        $('#workExperience').append(HTMLworkStart);
+        var currentWorkEntry = $('.work-entry:last');
+        var formattedWorkEmployer =
+          HTMLworkEmployer.replace(placeholderText, currentJob.employer);
+        var formattedWorkTitle =
+          HTMLworkTitle.replace(placeholderText, currentJob.title);
+        var formattedWorkLocation =
+          HTMLworkLocation.replace(placeholderText, currentJob.location);
+        var formattedWorkDates =
+          HTMLworkDates.replace(placeholderText, currentJob.dates);
+        var formattedWorkDescription =
+          HTMLworkDescription.replace(placeholderText, currentJob.description);
+        currentWorkEntry.append(formattedWorkEmployer + formattedWorkTitle);
+        currentWorkEntry.append(formattedWorkLocation);
+        currentWorkEntry.append(formattedWorkDates);
+        currentWorkEntry.append(formattedWorkDescription);
+    });
+  }
+}
+
+var projects = {
+  projects: [
+    {
+      title: "School recommendation system",
+      dates: "September 2013 - December 2013",
+      description : "Developed a system for predicting admittance into different" +
+        " grad schools based on historical data",
+      images: [
+        "http://3.bp.blogspot.com/-Ltz_l0bwQiA/UbXp2XLsE2I/AAAAAAAAAtU/jzAIEU1cRdY/s1600/20130610+-+Machine_Learning.png"
+      ]
+    }
+  ],
+  display: function() {
+    var placeholderText = "%data%";
+    this.projects.forEach(function(currentProject) {
+      $('#projects').append(HTMLprojectStart);
+      var currentProjectEntry = $('.project-entry:last');
+      var formattedProjectTitle =
+        HTMLprojectTitle.replace(placeholderText, currentProject.title);
+      var formattedDates =
+        HTMLprojectDates.replace(placeholderText, currentProject.dates);
+      var formattedDescription =
+        HTMLprojectDescription.replace(placeholderText, currentProject.description);
+      currentProjectEntry.append(formattedProjectTitle);
+      currentProjectEntry.append(formattedDates);
+      currentProjectEntry.append(formattedDescription);
+      currentProject.images.forEach(function(currentImage) {
+        var currentFormattedImage =
+          HTMLprojectImage.replace(placeholderText, currentImage);
+        currentProjectEntry.append(currentFormattedImage);
+      });
+    })
+  }
+}
+
+var map = {
+  display: function() {
+    $('#mapDiv').append(googleMap);
+  }
+}
+
 bio.display();
 education.display();
+work.display();
+projects.display();
+map.display();
